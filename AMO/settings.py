@@ -78,10 +78,15 @@ WSGI_APPLICATION = 'AMO.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Amo_bd',  # Le nom de ta base de données
+        'USER': 'postgres',  # Le nom d'utilisateur PostgreSQL (généralement 'postgres')
+        'PASSWORD': 'lucas2004',  # Le mot de passe que tu as défini lors de l'installation
+        'HOST': 'localhost',  # L'hôte de la base de données (généralement 'localhost')
+        'PORT': '8085',  # Le port par défaut de PostgreSQL
     }
 }
+
 
 
 # Password validation
@@ -124,3 +129,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# configuration du rest_framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
