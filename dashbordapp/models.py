@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 from django.core.validators import EmailValidator
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -52,13 +53,16 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['nom', 'prenom']
     
     
+    ROLE_CHOICES = [
+        ('admin', 'Admin'),
+        ('user', 'User'),
+        ('delivery', 'Livreur')
+    ]
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
+
     def __str__(self):
-        return f"{self.nom} {self.prenom}"
+        return f"{self.nom} {self.prenom} - {self.role}"
 
     @property
     def is_staff(self):
         return self.is_admin
-    
-    
-    
-    
