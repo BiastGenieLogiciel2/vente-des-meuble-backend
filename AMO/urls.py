@@ -17,10 +17,30 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-
+# from . import views  # Assurez-vous d'importer vos vues
 urlpatterns = [
-    path('admin/', admin.site.urls),
-     path('dashbordapp/', include('dashbordapp.urls')),  # Inclut les URLs de l'application Dashboard
-    
+    path('admin/', admin.site.urls),  # URL pour accéder à l'administration Django
+    path('produits/', include('produits.urls')),  # Inclut les URLs de l'application Amoapp
+    path('dashbordapp/', include('dashbordapp.urls')),  # Inclut les URLs de l'application Dashboard
 ]
+
+
+# from django.contrib import admin
+# from django.urls import path
+# from django.conf import settings
+# from django.conf.urls.static import static
+# from . import views  # Assurez-vous d'importer vos vues
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),  # URL pour accéder à l'administration Django
+#     path('', views.home, name='home'),  # URL pour la page d'accueil
+#     path('produits/', views.ProduitsListView.as_view(), name='produits'),  # URL pour la liste des produits
+#     path('produits/<int:id>/', views.ProduitDetailView.as_view(), name='produit_detail'),  # URL pour les détails d'un produit
+#     path('produits/nouveau/', views.ProduitCreateView.as_view(), name='produit_nouveau'),  # URL pour créer un nouveau produit
+#     path('produits/modifier/<int:id>/', views.ProduitUpdateView.as_view(), name='produit_modifier'),  # URL pour modifier un produit existant
+# ]
+
+# # Configuration pour servir les fichiers médias en mode développement
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,0 +1,56 @@
+# Python #
+##########
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+
+# Environnement virtuel #
+#########################
+env/
+venv/
+venv*/
+ENV/
+.venv/
+.venv*/
+
+# Django #
+##########
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Fichiers générés par Django #
+###############################
+/staticfiles/
+/media/
+
+# Configuration locale et secrets #
+###################################
+*.env
+.env.*
+config/settings/local.py
+config/settings/.secret_key
+
+# Configuration IDE/éditeur #
+#############################
+.vscode/
+.idea/
+*.swp
+*~
+
+# Dépendances #
+###############
+*.egg-info/
+.eggs/
+pip-log.txt
+.deps/
+
+# Système #
+###########
+.DS_Store
+Thumbs.db
