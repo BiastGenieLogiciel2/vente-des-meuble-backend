@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'AMO.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Amo_bd',  # Le nom de ta base de données
-        'USER': 'postgres',  # Le nom d'utilisateur PostgreSQL (généralement 'postgres')
-        'PASSWORD': 'lucas2004',  # Le mot de passe que tu as défini lors de l'installation
-        'HOST': 'localhost',  # L'hôte de la base de données (généralement 'localhost')
+        'NAME': config("DB_NAME"),  # Le nom de ta base de données
+        'USER': config("DB_USER"),  # Le nom d'utilisateur PostgreSQL (généralement 'postgres')
+        'PASSWORD': config("DB_PASSWORD"),  # Le mot de passe que tu as défini lors de l'installation
+        'HOST': config("DB_HOST"),  # L'hôte de la base de données (généralement 'localhost')
         'PORT': '8085',  # Le port par défaut de PostgreSQL
     }
 }
@@ -142,3 +143,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+
