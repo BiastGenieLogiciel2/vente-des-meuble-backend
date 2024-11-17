@@ -2,3 +2,7 @@ psycopg2-binary
 djangorestframework
 Django
 Pillow
+redis
+celery
+Djangorestframework_simplejwt
+django-allauth
