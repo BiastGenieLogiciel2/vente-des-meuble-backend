@@ -26,7 +26,11 @@ INSTALLED_APPS = [
     'Amoapp',
     'dashbordapp',
     'rest_framework',
-    'produits'
+    'produits',
+    'connexion',
+    'rest_framework.authtoken',  # Pour les tokens
+    #'corsheaders',  # Pour gérer les CORS 
+    'django.contrib.sites',  # Nécessaire pour django-allauth
 ]
 
 MIDDLEWARE = [
@@ -68,8 +72,35 @@ DATABASES = {
         'USER': 'postgres',  # Le nom d'utilisateur PostgreSQL (généralement 'postgres')
         'PASSWORD': 'lucas2004',  # Le mot de passe que tu as défini lors de l'installation
         'HOST': 'localhost',  # L'hôte de la base de données (généralement 'localhost')
-        'PORT': '5432',  # Le port par défaut de PostgreSQL
+        'PORT': '8085',  # Le port par défaut de PostgreSQL
     }
+}
+
+
+# configuration de l'envoie de l'email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'stivelucas037@gmail.com'
+EMAIL_HOST_PASSWORD = 'stive2004@'
+DEFAULT_FROM_EMAIL = 'AMO <stivelucas037@gmail.com>'
+
+# configuration de JWT
+INSTALLED_APPS += ['rest_framework_simplejwt']
+
+#REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] += [
+   # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+#]
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),  # Durée de validité du token d'accès
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),    # Durée de validité du token de rafraîchissement
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),              # Préfixe des tokens dans les requêtes
 }
 
 # Password validation
@@ -88,6 +119,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# configuration de la section des cookies
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Utiliser la base de données pour les sessions
+SESSION_COOKIE_AGE = 1209600  # Deux semaines
+SESSION_COOKIE_SECURE = False  # Mettre à True en production
+
+
+# redirection
+LOGIN_REDIRECT_URL = '/dashboard/'  # URL après connexion
+LOGOUT_REDIRECT_URL = '/connexion/'  # URL après déconnexion
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -118,4 +159,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+
+AUTH_USER_MODEL = 'connexion.User'
+
 
