@@ -70,7 +70,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Amo_bd',  # Le nom de ta base de données
         'USER': 'postgres',  # Le nom d'utilisateur PostgreSQL (généralement 'postgres')
-        'PASSWORD': 'lucas2004',  # Le mot de passe que tu as défini lors de l'installation
+        'PASSWORD': 'lucas2004@',  # Le mot de passe que tu as défini lors de l'installation
         'HOST': 'localhost',  # L'hôte de la base de données (généralement 'localhost')
         'PORT': '8085',  # Le port par défaut de PostgreSQL
     }
@@ -157,6 +157,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     )
 }
 

@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # URL pour accéder à l'administration Django
     path('produits/', include('produits.urls')),  # Inclut les URLs de l'application Amoapp
     path('dashbordapp/', include('dashbordapp.urls')),  # Inclut les URLs de l'application Dashboard
+    path('api/', include('connexion.urls')),  # Inclut les URLs de l'application Dashboard
 ]
 
 
